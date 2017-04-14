@@ -8,6 +8,8 @@ import { Map } from '../pages/map/map';
 import { Adventure } from '../pages/adventure/adventure';
 import { Profile } from '../pages/profile/profile';
 import { Settings } from '../pages/settings/settings';
+import { Tabs } from '../pages/tabs/tabs';
+
 
 
 @Component({
@@ -31,7 +33,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage,icon:"home"  },
+      { title: 'Home', component: Tabs,icon:"home"  },
       { title: 'Map', component: Map ,icon:"map"},
       { title: 'Adventure', component: Adventure,icon:"bicycle" },
       { title: 'Profile', component: Profile,icon:"person" },
@@ -52,7 +54,7 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page.component,{}, {animate: true, direction: 'forward'});
 
 
   }

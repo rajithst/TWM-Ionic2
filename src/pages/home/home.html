@@ -8,8 +8,10 @@
 </ion-header>
 
 <ion-content padding>
-  
-<ion-searchbar></ion-searchbar>
+  <ion-tabs>
+    <ion-tab [root]="chatRoot" tabTitle="Chat" tabIcon="chat"></ion-tab>
+  </ion-tabs>
+
 <ion-list>
   <ion-item>
     <ion-avatar item-left>

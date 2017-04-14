@@ -8,8 +8,12 @@ import { Map} from '../pages/map/map';
 import { Adventure } from '../pages/adventure/adventure';
 import { Profile } from '../pages/profile/profile';
 import { Settings } from '../pages/settings/settings';
+import { Articles } from '../pages/articles/articles';
+import { Travels } from '../pages/travels/travels';
+import { Tabs } from '../pages/tabs/tabs';
 
-
+import { Places } from '../pages/places/places';
+import { Accomodation } from '../pages/accomodation/accomodation';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,12 +25,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Map,
     Adventure,
     Profile,
-    Settings
+    Settings,
+    Articles,
+    Travels,
+    Tabs,
+    Places,
+    Accomodation
 
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{tabsPlacement:top}),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,7 +44,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Map,
     Adventure,
     Profile,
-    Settings
+    Settings,
+    Articles,
+    Travels,
+    Tabs,
+    Places,
+    Accomodation
 
   ],
   providers: [
