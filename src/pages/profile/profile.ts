@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Auth } from '../../providers/auth';
+import { Http } from '@angular/http';
+
 
 /**
  * Generated class for the Profile page.
@@ -14,7 +17,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Profile {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public auth:Auth,
+    public http:Http,
+  ) {
   }
 
   ionViewDidLoad() {
