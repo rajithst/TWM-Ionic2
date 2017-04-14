@@ -21,4 +21,9 @@ export class Map {
     console.log('ionViewDidLoad Map');
   }
 
+  backPage(){
+
+    this.navCtrl.pop();
+  }
+
 }

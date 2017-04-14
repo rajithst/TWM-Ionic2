@@ -14,39 +14,16 @@
 
 
 
-    <ion-list class="side-menu-gradient">
-   
-            <ion-item>
-              <ion-icon name="home" item-left></ion-icon>
-               Home
-              
-            </ion-item>
+    <ion-list class="side-menu-gradient"  >
 
-            <ion-item>
-              <ion-icon name="map" item-left></ion-icon>
-                Map
-              
-            </ion-item>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
 
-            <ion-item (click)="openPage(Adventure)">
-              <ion-icon name="bicycle" item-left></ion-icon>
-                Adventure
-              
-            </ion-item>
+              <ion-icon  name="{{ p.icon}}" item-left></ion-icon>
 
+               {{ p.title }}
 
-            <ion-item>
-              <ion-icon name="person" item-left></ion-icon>
-                Profile
-              
-            </ion-item>
+      </button>
 
-            <ion-item>
-              <ion-icon name="settings" item-left></ion-icon>
-                Settings
-              
-            </ion-item>
-      
     </ion-list>
   </ion-content>
 

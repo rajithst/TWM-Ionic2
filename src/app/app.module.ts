@@ -22,7 +22,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Adventure,
     Profile,
     Settings
-  
+
   ],
   imports: [
     BrowserModule,
@@ -36,12 +36,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Adventure,
     Profile,
     Settings
-  
+
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+
   ]
 })
 export class AppModule {}
