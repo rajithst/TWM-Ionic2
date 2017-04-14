@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { Auth } from '../../providers/auth';
+import { Login } from '../../pages/login/login';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -10,8 +11,15 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  x:any;
+  constructor(public navCtrl: NavController, public auth:Auth) {
 
+
+
+    this.x = this.auth.authenticated();
+    if(this.x == false){
+      this.navCtrl.push(Login);
+    }
   }
 
 }

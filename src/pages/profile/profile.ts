@@ -17,6 +17,7 @@ import { Http } from '@angular/http';
 })
 export class Profile {
 
+  profile:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -26,7 +27,8 @@ export class Profile {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Profile');
+    this.profile = JSON.parse(localStorage.getItem('profile'));
+    console.log(this.profile.name)
   }
 
 }
