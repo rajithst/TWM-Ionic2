@@ -1,55 +1,46 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home page</ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
+<ion-content padding has-header ="true" has-bouncing="true">
   <ion-tabs>
     <ion-tab [root]="chatRoot" tabTitle="Chat" tabIcon="chat"></ion-tab>
   </ion-tabs>
 
-<ion-list>
+
+
+<ion-card>
+
   <ion-item>
     <ion-avatar item-left>
-      <img src="https://avatars2.githubusercontent.com/u/14908097?v=3&s=460">
+      <img src="http://i.telegraph.co.uk/multimedia/archive/03491/Vladimir_Putin_1_3491835k.jpg">
     </ion-avatar>
-    <h2>Rajith Thennakoon</h2>
-    <p>Aprial 13,2017</p>
+    <h2>Marty McFly</h2>
+    <p>November 5, 1955</p>
   </ion-item>
-</ion-list>
 
-<ion-grid>
+  <img src="https://c1.staticflickr.com/8/7455/12252284106_b2fd041c04_b.jpg">
+
+  <ion-card-content>
+    <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+  </ion-card-content>
+
   <ion-row>
-    <ion-col col-8>
-      Temple of Tooth
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>12 Likes</div>
+      </button>
     </ion-col>
-
-      <ion-col col-4>
-      Kandy
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>4 Comments</div>
+      </button>
+    </ion-col>
+    <ion-col center text-center>
+      <ion-note>
+        11h ago
+      </ion-note>
     </ion-col>
   </ion-row>
 
-  <ion-row>
-    <ion-col col-12>
-     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Zahntempel_Kandy.jpg/1200px-Zahntempel_Kandy.jpg" alt="">
-    </ion-col>
-
-  </ion-row>
-  <ion-row>
-    <ion-col col-12>
-Sri Dalada Maligawa or the Temple of the Sacred Tooth Relic is a Buddhist temple in the city of Kandy, Sri Lanka. It is located in the royal palace complex of the former Kingdom of Kandy, which houses the relic of the tooth of the Buddha
-
-    </ion-col>
-    <button ion-button color="danger">view</button>    <button ion-button color="secondary">Review</button>
-
-  </ion-row>
-
-
-</ion-grid>
-
-
+</ion-card>
 </ion-content>
