@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Map} from '../pages/map/map';
@@ -15,6 +16,8 @@ import { Tabs } from '../pages/tabs/tabs';
 import { Places } from '../pages/places/places';
 import { Accomodation } from '../pages/accomodation/accomodation';
 import { Login } from '../pages/login/login';
+import {IonSimpleWizard} from '../pages/ion-simple-wizard/ion-simple-wizard.component';
+import {IonSimpleWizardStep} from '../pages/ion-simple-wizard/ion-simple-wizard.step.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,7 +42,9 @@ import { Auth } from '../providers/auth';
     Tabs,
     Places,
     Accomodation,
-    Login
+    Login,
+    IonSimpleWizard,
+    IonSimpleWizardStep
 
   ],
   imports: [
@@ -59,7 +64,9 @@ import { Auth } from '../providers/auth';
     Tabs,
     Places,
     Accomodation,
-    Login
+    Login,
+    IonSimpleWizard,
+    IonSimpleWizardStep
 
   ],
   providers: [
