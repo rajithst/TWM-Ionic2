@@ -22,6 +22,7 @@ export class Adventure {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public evts: Events) {
 
 
+
     this.step = 1;//The value of the first step, always 1
     this.stepCondition = false;//Set to true if you don't need condition in every step
     this.stepDefaultCondition = this.stepCondition;//Save the default condition for every step
@@ -42,10 +43,10 @@ export class Adventure {
     });
   }
 
-
-
+ 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Adventure');
+    
   }
 
   onFinish() {

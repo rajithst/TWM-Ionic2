@@ -1,3 +1,5 @@
+
+
 {
   "name": "ionic-hello-world",
   "author": "Ionic Framework",
@@ -41,7 +43,8 @@
     "cordova-plugin-device",
     "cordova-plugin-statusbar",
     "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-plugin-googlemaps"
   ],
   "cordovaPlatforms": [],
   "description": "twmmobile: An Ionic project"
