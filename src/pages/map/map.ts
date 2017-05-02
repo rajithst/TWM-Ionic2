@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 /**
  * Generated class for the Map page.
@@ -14,15 +14,17 @@ import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 })
 export class Map {
  map: GoogleMap;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform) {
+     platform.ready().then(() => {
+            this.loadMap();
+        });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Map');
+    this.map = new GoogleMap('map');
   }
-ngAfterViewInit() {
- this.loadMap();
-}
+
 
  loadMap(){
 
@@ -50,9 +52,7 @@ ngAfterViewInit() {
           }
         });
 
-        this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
-            console.log('Map is ready!');
-        });
+        this.map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
 
     }
   backPage(){

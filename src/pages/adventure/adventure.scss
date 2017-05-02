@@ -24,5 +24,12 @@ ion-scroll.item{
     width: 100%;
     color: #fff;
   }
-
+.item ion-thumbnail {
+    min-width: 20rem;    
+    min-height: 20rem;
+    img {
+        max-width: 20rem;    
+        min-width: 10rem;
+    }
+}
 }

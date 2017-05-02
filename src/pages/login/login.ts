@@ -21,7 +21,7 @@ export class Login {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
-    this.auth.login();
+ 
   }
 
 }
