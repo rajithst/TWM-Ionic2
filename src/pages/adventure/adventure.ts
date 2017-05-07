@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events ,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, AlertController, ModalController, Platform } from 'ionic-angular';
+import { AdvModal } from "../adv-modal/adv-modal";
+import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 
 /**
  * Generated class for the Adventure page.
@@ -13,14 +15,20 @@ import { IonicPage, NavController, NavParams, Events ,AlertController } from 'io
   templateUrl: 'adventure.html',
 })
 export class Adventure {
-
+    address;
+  map: GoogleMap;
   step: any;
   stepCondition: any;
   stepDefaultCondition: any;
   currentStep: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public evts: Events) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public evts: Events,public platform: Platform,public modalCtrl: ModalController) {
+    this.address = {
+      place: ''
+    };
+     platform.ready().then(() => {
+            this.loadMap();
+        });
 
 
     this.step = 1;//The value of the first step, always 1
@@ -47,7 +55,44 @@ export class Adventure {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Adventure');
     
+    let myModal = this.modalCtrl.create(AdvModal);
+    let me = this;
+    myModal.onDidDismiss(data => {
+      this.address.place = data;
+    });
+    myModal.present();
+    this.map = new GoogleMap('map');
+    
   }
+ loadMap(){
+
+        let location = new GoogleMapsLatLng(-34.9290,138.6010);
+
+        this.map = new GoogleMap('map', {
+          'backgroundColor': 'white',
+          'controls': {
+            'compass': true,
+            'myLocationButton': true,
+            'indoorPicker': true,
+            'zoom': true
+          },
+          'gestures': {
+            'scroll': true,
+            'tilt': true,
+            'rotate': true,
+            'zoom': true
+          },
+          'camera': {
+            'latLng': location,
+            'tilt': 30,
+            'zoom': 15,
+            'bearing': 50
+          }
+        });
+
+        this.map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
+
+    }
 
   onFinish() {
     this.alertCtrl.create({

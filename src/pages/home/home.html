@@ -6,7 +6,9 @@
     <ion-tab [root]="chatRoot" tabTitle="Chat" tabIcon="chat"></ion-tab>
   </ion-tabs>
 
-
+<ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
 
 <ion-card>
 

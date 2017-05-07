@@ -14,7 +14,12 @@ export class HomePage {
   x:any;
   constructor(public navCtrl: NavController, public auth:Auth) {
 
-
+// doRefresh(refresher) {
+//   this.someService.getPosts().subscribe(res => {
+//     this.posts = res;
+//     refresher.complete();
+//   });
+// }
 
     this.x = this.auth.authenticated();
     if(this.x == false){

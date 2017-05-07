@@ -1,6 +1,9 @@
 page-adventure {
-ion-scroll.item{
-	height: 100%;
+
+.scroll-horiz {
+  width: 200%;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
   ion-card {

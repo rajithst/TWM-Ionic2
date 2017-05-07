@@ -44,46 +44,37 @@
     Map
   </ion-card-header>
   <ion-card-content>
-    The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+  <div #map id="map" ></div>
   </ion-card-content>
 </ion-card>
  <ion-card>
+
+
   <ion-card-header>
     Friends
   </ion-card-header>
-  <ion-card-content  scroll="true"> 
+  <ion-card-content> 
     <ion-grid>
       <ion-row>
-       
+        
           <ion-col col-3 col-sm-6 col-md-6 col-lg-4 col-xl-6>
-            <button ion-item>
-              <ion-thumbnail item-left>
-               <ion-img src="https://img.clipartfox.com/0c241fa3802e9e5ba21312e1771cda3e_radhika-apte-radhika-apte-hindi-film-actress-clipart_759-422.jpeg"></ion-img>
+              <ion-thumbnail>
+               <ion-img style="width: 80px; height: 80px;" src="http://www.leytonorient.com/images/common/bg_player_profile_default_big.png"></ion-img>
              </ion-thumbnail>
-            </button>                 
+                          
           </ion-col>
           <ion-col col-3 col-sm-6 col-md-6 col-lg-4 col-xl-6>
-            <button ion-item>
-              <ion-thumbnail item-left>
-               <ion-img src="http://ww3.hdnux.com/photos/54/63/70/11746830/8/920x920.jpg"></ion-img>
+              <ion-thumbnail>
+               <ion-img style="width: 80px; height: 80px;" src="http://www.leytonorient.com/images/common/bg_player_profile_default_big.png"></ion-img>
              </ion-thumbnail>
-            </button>                 
+                          
           </ion-col>
           <ion-col col-3 col-sm-6 col-md-6 col-lg-4 col-xl-6>
-            <button ion-item>
-              <ion-thumbnail item-left>
-               <ion-img src="https://img.buzzfeed.com/buzzfeed-static/static/2015-06/7/10/campaign_images/webdr09/20-times-josh-peck-was-the-most-relatable-person--2-28523-1433687653-0_dblbig.jpg"></ion-img>
+              <ion-thumbnail>
+               <ion-img style="width: 80px; height: 80px;" src="http://www.leytonorient.com/images/common/bg_player_profile_default_big.png"></ion-img>
              </ion-thumbnail>
-            </button>                 
+                          
           </ion-col>
-          <ion-col col-3 col-sm-6 col-md-6 col-lg-4 col-xl-6>
-            <button ion-item>
-              <ion-thumbnail item-left>
-               <ion-img src="https://tribzap2it.files.wordpress.com/2015/07/person-of-interest-season-4-sarah-shahi-cbs.jpg"></ion-img>
-             </ion-thumbnail>
-            </button>                 
-          </ion-col>
-     
       </ion-row>
     </ion-grid>
   </ion-card-content>
@@ -99,20 +90,27 @@
 
 
 <ion-card >
-    <ion-scroll scrollX="true"  class="item">
-        <ion-row>
-      <ion-list>
-  <ion-item>
-    <ion-thumbnail item-left>
-      <img src="http://engineering.unl.edu/images/uploads/Kayla.jpg">
-    </ion-thumbnail>
-    <h2>My Neighbor Totoro</h2>
-    <p>Hayao Miyazaki • 1988</p>
-    <button ion-button clear item-right>View</button>
-  </ion-item>
-</ion-list>
-        </ion-row>
-    </ion-scroll>
+  <div class="scroll-horiz">
+        <ion-row scrollX="true" >
+          <ion-col col-4 col-sm-4 col-md-2 col-lg-4 col-xl-1>
+          <ion-card>
+    <img  style="width: 80px; height: 80px;" src="https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg"/>
+  </ion-card>
+          </ion-col>
+          <ion-col col-4 col-sm-4 col-md-2 col-lg-4 col-xl-1>
+            <ion-card>
+    <img  style="width: 80px; height: 80px;" src="https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg"/>
+  </ion-card>
+          </ion-col>
+          <ion-col col-4 col-sm-4 col-md-2 col-lg-4 col-xl-1>
+            <ion-card>
+    <img  style="width: 80px; height: 80px;" src="https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg"/>
+  </ion-card>
+          </ion-col>
+        
+             </ion-row>
+</div>
+     
 </ion-card>
 
 </ion-content>

@@ -23,7 +23,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 
+
 import { Auth } from '../providers/auth';
+import { AdvModal } from "../pages/adv-modal/adv-modal";
 
 
 
@@ -44,7 +46,9 @@ import { Auth } from '../providers/auth';
     Accomodation,
     Login,
     IonSimpleWizard,
-    IonSimpleWizardStep
+    IonSimpleWizardStep,
+    AdvModal
+
 
   ],
   imports: [
@@ -66,7 +70,8 @@ import { Auth } from '../providers/auth';
     Accomodation,
     Login,
     IonSimpleWizard,
-    IonSimpleWizardStep
+    IonSimpleWizardStep,
+    AdvModal
 
   ],
   providers: [
