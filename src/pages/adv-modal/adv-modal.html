@@ -19,12 +19,14 @@
 
 <ion-list>
   <ion-item-sliding *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
-    <ion-item >
-       <ion-avatar item-left>
-      <img src="{{item.photo}}">
-    </ion-avatar>
-       {{ item }}
-    </ion-item>
+     <ion-item>
+    <ion-thumbnail item-left>
+       <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{item.reference}}&key=AIzaSyBhvuK4j4q0eXP_CBxUmRFpW9Ki7N55Il4">
+    </ion-thumbnail>
+    <h2>  {{ item }}</h2>
+    <p>Hayao Miyazaki • 1988</p>
+    <button ion-button clear item-right>View</button>
+  </ion-item>
     <ion-item-options side="left">
       <button ion-button (click)="favorite(item)">Favorite</button>
       <button ion-button color="danger" (click)="share(item)">View</button>
