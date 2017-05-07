@@ -9,13 +9,14 @@ import { Adventure } from '../pages/adventure/adventure';
 import { Profile } from '../pages/profile/profile';
 import { Settings } from '../pages/settings/settings';
 import { Tabs } from '../pages/tabs/tabs';
-
+import { Auth } from '../../providers/auth';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+    profile: any;
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
@@ -30,7 +31,7 @@ export class MyApp {
 
   ) {
     this.initializeApp();
-
+ this.profile = JSON.parse(localStorage.getItem('profile'));
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: Tabs,icon:"home"  },
