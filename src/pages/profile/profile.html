@@ -21,36 +21,98 @@
 
 </ion-content>
 
-<ion-content padding *ngIf="auth.authenticated()">
 
-  <ion-card>
 
-    <ion-item *ngIf="profile">
+<ion-content *ngIf="auth.authenticated()" >
+  <figure class="snip1336" *ngIf="profile">
+   <img src="{{profile.cover.source}}" alt="sample87" />
+  <figcaption>
+    <img src="{{ profile.picture_large}}" alt="profile-sample4" class="profile" />
+    <h2>{{profile.name}}<span>{{profile.email}}</span></h2>
+    <ion-list inset>
+
+ <ion-list no-lines>
+  <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+    {{ item }}
+  </button> 
+</ion-list>
+
+</ion-list>
+      <button ion-button block (click)="auth.logout()" >Logout</button>
+       <ion-fab top right edge>
+    <button ion-button icon-only>
+  <ion-icon name="star"></ion-icon>
+</button>
+       </ion-fab>
+  </figcaption>
+  <div padding >
+  <ion-segment color="danger" [(ngModel)]="pet">
+    <ion-segment-button value="Friends">
+      Friends
+    </ion-segment-button>
+    <ion-segment-button value="Trips">
+      Trips
+    </ion-segment-button>
+  </ion-segment>
+</div>
+</figure>
+
+<div [ngSwitch]="pet" >
+  <ion-list *ngSwitchCase="'Friends'">
+<ion-list>
+  <ion-item-sliding>
+    <ion-item>
       <ion-avatar item-left>
-        <img src="{{ profile.picture }}">
+        <img src="https://www.trickscity.com/wp-content/uploads/2017/03/stylish-girl-dp.jpg">
       </ion-avatar>
-      <h2>{{ profile.name }}</h2>
-      <p>{{ profile.email }}</p>
+      <h2>Slimer</h2>
     </ion-item>
-
-  </ion-card>
-
-  <button ion-button block (click)="auth.logout()">Logout</button>
-
-</ion-content>
-<ion-content *ngIf="profile">
-   <div class="list card">
-        <ion-item class="profile-item">
-          <div class="profile-picture big-profile-picture">
-         <img src="{{ profile.picture }}">
-          </div>
-          <h2 class="profile-name dark">{{profile.name}}</h2>
-          <div class="profile-info">{{profile.email}}</div>
-        </ion-item>
-        <ion-item class="profile-item">
-          <button class="button button-block button-positive" ng-click="logIn()">
-            Login
-          </button>
-        </ion-item>
-      </div>
+    <ion-item-options side="left">
+      <button ion-button color="primary">
+        <ion-icon name="text"></ion-icon>
+        Text
+      </button>
+      <button ion-button color="secondary">
+        <ion-icon name="call"></ion-icon>
+        Call
+      </button>
+    </ion-item-options>
+    <ion-item-options side="right">
+      <button ion-button color="primary">
+        <ion-icon name="mail"></ion-icon>
+        Email
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+  </ion-list>
+  <ion-list *ngSwitchCase="Trips">
+<ion-list>
+  <ion-item-sliding>
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="https://www.trickscity.com/wp-content/uploads/2017/03/stylish-girl-dp.jpg">
+      </ion-avatar>
+      <h2>Slimer</h2>
+    </ion-item>
+    <ion-item-options side="left">
+      <button ion-button color="primary">
+        <ion-icon name="text"></ion-icon>
+        Text
+      </button>
+      <button ion-button color="secondary">
+        <ion-icon name="call"></ion-icon>
+        Call
+      </button>
+    </ion-item-options>
+    <ion-item-options side="right">
+      <button ion-button color="primary">
+        <ion-icon name="mail"></ion-icon>
+        Email
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+  </ion-list>
+</div>
 </ion-content>
