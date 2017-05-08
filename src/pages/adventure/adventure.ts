@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Events, AlertController, ModalCont
 import { AdvModal } from "../adv-modal/adv-modal";
 import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 
+
 /**
  * Generated class for the Adventure page.
  *

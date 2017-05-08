@@ -38,4 +38,19 @@
   <button ion-button block (click)="auth.logout()">Logout</button>
 
 </ion-content>
-
+<ion-content *ngIf="profile">
+   <div class="list card">
+        <ion-item class="profile-item">
+          <div class="profile-picture big-profile-picture">
+         <img src="{{ profile.picture }}">
+          </div>
+          <h2 class="profile-name dark">{{profile.name}}</h2>
+          <div class="profile-info">{{profile.email}}</div>
+        </ion-item>
+        <ion-item class="profile-item">
+          <button class="button button-block button-positive" ng-click="logIn()">
+            Login
+          </button>
+        </ion-item>
+      </div>
+</ion-content>
