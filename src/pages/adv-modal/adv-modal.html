@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 
-
+<!--
 
 <ion-header>
     <ion-navbar>
@@ -21,10 +21,10 @@
   <ion-item-sliding *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
      <ion-item>
     <ion-thumbnail item-left>
-       <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{item.reference}}&key=AIzaSyBhvuK4j4q0eXP_CBxUmRFpW9Ki7N55Il4">
+       <img src="https://cdn4.iconfinder.com/data/icons/navigation-2/500/Base_gps_location_map_map_marker_place-512.png">
     </ion-thumbnail>
     <h2>  {{ item }}</h2>
-    <p>Hayao Miyazaki • 1988</p>
+    <p>{{item.description}}</p>
     <button ion-button clear item-right>View</button>
   </ion-item>
     <ion-item-options side="left">
@@ -37,4 +37,39 @@
     </ion-item-options>
   </ion-item-sliding>
 </ion-list>
-  </ion-content>`
+  </ion-content>`-->
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>Search address</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content> 
+    <ion-searchbar 
+        [(ngModel)]="autocomplete.query" 
+        [showCancelButton]="true" 
+        (ionInput)="updateSearch()" 
+        (ionCancel)="dismiss()"
+        placeholder="Start typing and select ...">
+    </ion-searchbar>
+
+    <ion-list>
+  <ion-item-sliding *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
+     <ion-item>
+    <ion-thumbnail item-left>
+       <img src="https://cdn4.iconfinder.com/data/icons/navigation-2/500/Base_gps_location_map_map_marker_place-512.png">
+    </ion-thumbnail>
+    <h2>  {{item.description}}</h2>
+    <p>{{item.description}}</p>
+    <button ion-button clear item-right>View</button>
+  </ion-item>
+    <ion-item-options side="left">
+      <button ion-button (click)="favorite(item)">Favorite</button>
+      <button ion-button color="danger" (click)="share(item)">View</button>
+    </ion-item-options>
+
+    <ion-item-options side="right">
+      <button ion-button (click)="unread(item)">Add</button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+</ion-content>

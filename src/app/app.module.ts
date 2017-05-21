@@ -29,8 +29,6 @@ import { AdvModal } from "../pages/adv-modal/adv-modal";
 
 
 
-
-
 @NgModule({
   declarations: [
     MyApp,
@@ -48,7 +46,6 @@ import { AdvModal } from "../pages/adv-modal/adv-modal";
     IonSimpleWizard,
     IonSimpleWizardStep,
     AdvModal
-
 
   ],
   imports: [
@@ -72,7 +69,6 @@ import { AdvModal } from "../pages/adv-modal/adv-modal";
     IonSimpleWizard,
     IonSimpleWizardStep,
     AdvModal
-
   ],
   providers: [
     StatusBar,
