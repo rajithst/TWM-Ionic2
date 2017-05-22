@@ -200,6 +200,8 @@ export class Adventure implements OnInit {
                 self.placedetails.address = place.formatted_address;
                 self.placedetails.lat = place.geometry.location.lat();
                 self.placedetails.lng = place.geometry.location.lng();
+                self.placedetails.photo_reference = place.photos[0].getUrl({'maxWidth': 480, 'maxHeight': 246});
+
                 for (var i = 0; i < place.address_components.length; i++) {
                     let addressType = place.address_components[i].types[0];
                     let values = {
@@ -250,7 +252,7 @@ export class Adventure implements OnInit {
             address: '',
             lat: '',
             lng: '',
-            components: {photo_reference:{},
+            components: {
                 route: { set: false, short:'', long:'' },                           // calle 
                 street_number: { set: false, short:'', long:'' },                   // numero
                 sublocality_level_1: { set: false, short:'', long:'' },             // barrio

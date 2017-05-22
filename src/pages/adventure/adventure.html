@@ -155,10 +155,15 @@
                 [(ngModel)]="address.place">
             </ion-input>
         </ion-item>
+        <!--<ion-card>
         <ion-item *ngIf="address.set==true">
- 
+ <ion-card-header>
+    <h3>Full text address</h3>
+  </ion-card-header>
+  <ion-card-content>
             <ion-icon name="pin" item-left></ion-icon>
-            <h3>Full text address</h3>
+            <img  src="{{placedetails.photo_reference}}" />
+            
             <p>{{ placedetails.address }}</p>
             <h3>Street name</h3>
             <p>{{ placedetails.components.route.long }}</p>
@@ -171,7 +176,26 @@
             <h3>City</h3>
             <p>{{ placedetails.components.locality.long }}</p>     
             <h3>Location geometry</h3>
-            <p>{{ placedetails.lat }}, {{ placedetails.lng }}</p>                                           
+            <p>{{ placedetails.lat }}, {{ placedetails.lng }}</p>  
+</ion-card-content>
         </ion-item>
+        </ion-card>-->
+
+           <ion-card *ngIf="address.set==true">
+    <img class="img-responcive img-fluid"  src="{{placedetails.photo_reference}}"/>
+    <div class="card-title">{{ placedetails.address }}</div>
+    <div class="card-subtitle">{{ placedetails.components.route.long }}</div>
+      <ion-fab bottom right dark>
+
+    <button ion-fab mini><ion-icon name="share"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+  </ion-card>
     </ion-list>
 </ion-content>
+
+ 
