@@ -23,6 +23,7 @@ export class Map {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Map');
     this.map = new GoogleMap('map');
+  
   }
 
 

@@ -15,11 +15,7 @@
 </ion-header>
 
 
-<ion-content padding *ngIf="!auth.authenticated()">
 
-  <button ion-button block (click)="auth.login()">Login</button>
-
-</ion-content>
 
 
 
@@ -115,4 +111,10 @@
 </ion-list>
   </ion-list>
 </div>
+</ion-content>
+
+<ion-content padding *ngIf="!auth.authenticated()">
+
+  <button ion-button block (click)="auth.login()">Login</button>
+
 </ion-content>

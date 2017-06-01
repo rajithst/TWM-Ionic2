@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { App,Nav, Platform } from 'ionic-angular';
+import { App, Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -10,13 +10,15 @@ import { Profile } from '../pages/profile/profile';
 import { Settings } from '../pages/settings/settings';
 import { Tabs } from '../pages/tabs/tabs';
 import { Auth } from '../../providers/auth';
+import { Search } from "../pages/search/search";
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-    profile: any;
+  
+  profile: any;
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
@@ -27,18 +29,19 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private app: App
-
+    private app: App,
+    public modalCtrl: ModalController
   ) {
     this.initializeApp();
  this.profile = JSON.parse(localStorage.getItem('profile'));
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: Tabs,icon:"home"  },
-      { title: 'Map', component: Map ,icon:"map"},
+      { title: 'On Going Trip', component: Map ,icon:"map"},
       { title: 'Adventure', component: Adventure,icon:"bicycle" },
       { title: 'Profile', component: Profile,icon:"person" },
       { title: 'Settings', component: Settings,icon:"settings"}
+      
     ];
 
   }
@@ -55,8 +58,16 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component,{}, {animate: true, direction: 'forward'});
-
+    // this.nav.setRoot(page.component,{}, {animate: true, direction: 'forward'});
+    this.nav.push(page.component);
 
   }
+      showModal() {
+        // reset 
+       
+        // show modal|
+        let modal = this.modalCtrl.create(Search);
+        modal.present();
+    }
+
 }

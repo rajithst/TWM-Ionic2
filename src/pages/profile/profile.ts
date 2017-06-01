@@ -30,6 +30,10 @@ export class Profile {
     this.profile = JSON.parse(localStorage.getItem('profile'));
     console.log(this.profile.name)
     console.log(this.profile)
+    
   }
+
+
+
 
 }

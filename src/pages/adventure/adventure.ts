@@ -2,138 +2,23 @@
 // import { IonicPage, NavController, NavParams, Events, AlertController, ModalController, Platform } from 'ionic-angular';
 import { AdvModal } from "../adv-modal/adv-modal";
 import { GoogleMap, GoogleMapsEvent } from 'ionic-native';
+import { Chart } from 'chart.js';
 
 
-// /**
-//  * Generated class for the Adventure page.
-//  *
-//  * See http://ionicframework.com/docs/components/#navigation for more info
-//  * on Ionic pages and navigation.
-//  */
-// @IonicPage()
-
-// export class Adventure {
-//     address;
-//   map: GoogleMap;
-//   step: any;
-//   stepCondition: any;
-//   stepDefaultCondition: any;
-//   currentStep: any;
-
-//   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public evts: Events,public platform: Platform,public modalCtrl: ModalController) {
-//     this.address = {
-//       place: ''
-//     };
-//      platform.ready().then(() => {
-//             this.loadMap();
-//         });
-
-
-//     this.step = 1;//The value of the first step, always 1
-//     this.stepCondition = false;//Set to true if you don't need condition in every step
-//     this.stepDefaultCondition = this.stepCondition;//Save the default condition for every step
-//     //You can subscribe to the Event 'step:changed' to handle the current step
-//     this.evts.subscribe('step:changed', step => {
-//       //Handle the current step if you need
-//       this.currentStep = step[0];
-//       //Set the step condition to the default value
-//       this.stepCondition = this.stepDefaultCondition;
-//     });
-//     this.evts.subscribe('step:next', () => {
-//       //Do something if next
-//       console.log('Next pressed: ', this.currentStep);
-//     });
-//     this.evts.subscribe('step:back', () => {
-//       //Do something if back
-//       console.log('Back pressed: ', this.currentStep);
-//     });
-//   }
-
- 
-//   ionViewDidLoad() {
-//     console.log('ionViewDidLoad Adventure');
-    
-//     let myModal = this.modalCtrl.create(AdvModal);
-//     let me = this;
-//     myModal.onDidDismiss(data => {
-//       this.address.place = data;
-//     });
-//     myModal.present();
-//     this.map = new GoogleMap('map');
-    
-//   }
-//  loadMap(){
-
-//         let location = new GoogleMapsLatLng(-34.9290,138.6010);
-
-//         this.map = new GoogleMap('map', {
-//           'backgroundColor': 'white',
-//           'controls': {
-//             'compass': true,
-//             'myLocationButton': true,
-//             'indoorPicker': true,
-//             'zoom': true
-//           },
-//           'gestures': {
-//             'scroll': true,
-//             'tilt': true,
-//             'rotate': true,
-//             'zoom': true
-//           },
-//           'camera': {
-//             'latLng': location,
-//             'tilt': 30,
-//             'zoom': 15,
-//             'bearing': 50
-//           }
-//         });
-
-//         this.map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
-
-//     }
-
-//   onFinish() {
-//     this.alertCtrl.create({
-//       message: 'Wizard Finished!!',
-//       title: 'Congrats!!',
-//       buttons: [{
-//         text: 'Ok'
-//       }]
-//     }).present();
-//   }
-
-//   toggle() {
-//     this.stepCondition = !this.stepCondition;
-//   }
-//   getIconStep2() {
-//     return this.stepCondition ? 'unlock' : 'lock';
-//   }
-
-//   getIconStep3() {
-//     return this.stepCondition ? 'happy' : 'sad';
-//   }
-//   getLikeIcon() {
-//     return this.stepCondition ? 'thumbs-down' : 'thumbs-up';
-//   }
-//  /* goToExample2() {
-//     this.navCtrl.push(DynamicPage);
-//   }*/
-
-//   textChange(e) {
-//     if (e.target.value && e.target.value.trim() !== '') {
-//       this.stepCondition = true;
-//     } else {
-//       this.stepCondition = false;
-//     }
-//   }
-
-
-
-
-// }
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
+import { Geolocation } from 'ionic-native';
+ var currentposition:any;
+ var weather :any;
+Geolocation.getCurrentPosition().then(res => {
+   res.coords.latitude
+   res.coords.longitude
+   console.log(res);
+   currentposition = res;
 
+}).catch((error) => {
+  console.log('Error getting location', error);
+});
 
 declare var google:any;
 
@@ -142,7 +27,14 @@ declare var google:any;
   templateUrl: 'adventure.html',
 })
 export class Adventure implements OnInit {
+   @ViewChild('barCanvas') barCanvas;
+  @ViewChild('lineCanvas') lineCanvas;
+   @ViewChild('doughnutCanvas') doughnutCanvas; 
 
+    doughnutChart:any;
+    lineChart:any;
+    
+ 
     address:any = {
         place: '',
         set: false,
@@ -155,13 +47,120 @@ export class Adventure implements OnInit {
     constructor(public navCtrl: NavController,
         public modalCtrl: ModalController) { 
     }
-
-    ngOnInit() {
-        this.initMap();
-        this.initPlacedetails();
-        
+    
+    ngOnDestroy(){
+        this.refereshmap();
     }
 
+    ngOnInit() {
+     
+
+        this.initMap();
+        this.initPlacedetails();
+        this.showModal();
+        this.refereshmap();
+
+         this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+ 
+            type: 'horizontalBar',
+            options : {
+                scaleShowLabels : false,
+               barShowLabels: true,
+
+    scales : {
+        xAxes : [ {
+            gridLines : {
+                display : false
+            }
+        } ],
+                        yAxes: [{
+                    gridLines: {
+                       display : false
+                    }
+                }]
+    }
+},
+            data: {
+                labels: ["1", "2", "3", "4", "5"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        '#EF5350',
+                        '#EF5350',
+                        '#EF5350',
+                        '#EF5350',
+                        '#EF5350',
+                        '#EF5350'
+                    ],
+                    hoverBackgroundColor: [
+                        "#D32F2F",
+                        "#D32F2F",
+                        "#D32F2F",
+                        "#D32F2F",
+                        "#D32F2F",
+                        "#D32F2F"
+                    ]
+                }]
+            }
+ 
+        });
+ 
+        this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+ 
+            type: 'line',
+            options : {
+                scaleShowLabels : false,
+               barShowLabels: true,
+
+    scales : {
+        xAxes : [ {
+            gridLines : {
+                display : false
+            }
+        } ],
+                        yAxes: [{
+                    gridLines: {
+                       display : false
+                    }
+                }]
+    }
+},
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [
+                    {
+                        
+                        fill: false,
+                        lineTension: 0.1,
+                        backgroundColor: "rgba(75,192,192,0.4)",
+                        borderColor: "rgba(75,192,192,1)",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: "rgba(75,192,192,1)",
+                        pointBackgroundColor: "#fff",
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: [65, 59, 80, 81, 56, 55, 40],
+                        spanGaps: false,
+                    }
+                ]
+            }
+ 
+        });
+     
+    }
+
+refereshmap(){
+    google.maps.event.trigger(this.map, 'resize');
+}
 
     showModal() {
         // reset 
@@ -184,6 +183,7 @@ export class Adventure implements OnInit {
         this.initPlacedetails();
         this.address.place = '';
         this.address.set = false;
+         
     }
 
     private getPlaceDetail(place_id:string):void {
@@ -201,7 +201,7 @@ export class Adventure implements OnInit {
                 self.placedetails.lat = place.geometry.location.lat();
                 self.placedetails.lng = place.geometry.location.lng();
                 self.placedetails.photo_reference = place.photos[0].getUrl({'maxWidth': 480, 'maxHeight': 246});
-
+               
                 for (var i = 0; i < place.address_components.length; i++) {
                     let addressType = place.address_components[i].types[0];
                     let values = {
@@ -236,6 +236,7 @@ export class Adventure implements OnInit {
             draggable: true,
             zoomControl: true
         });
+        
     }
 
     private createMapMarker(place:any):void {

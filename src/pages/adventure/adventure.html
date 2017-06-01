@@ -181,9 +181,22 @@
         </ion-item>
         </ion-card>-->
 
+<button *ngIf="address.set==true" ion-button full color="dark"  (click)="showModal()">Pick a Location</button>
+    <ion-card>
+      <ion-card-header>
+        Ratings
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+ 
+
            <ion-card *ngIf="address.set==true">
+             <div style="box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);" >
     <img class="img-responcive img-fluid"  src="{{placedetails.photo_reference}}"/>
-    <div class="card-title">{{ placedetails.address }}</div>
+     </div>
+    <div class="card-title" style="background-color: rgba(0,0,0,.2); height:26px">{{ placedetails.address }}</div>
     <div class="card-subtitle">{{ placedetails.components.route.long }}</div>
       <ion-fab bottom right dark>
 
@@ -194,8 +207,65 @@
       <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
+        <ion-fab bottom left>
+
+    <button ion-fab mini  color="secondary"><ion-icon name="navigate"></ion-icon></button>
+  </ion-fab>
   </ion-card>
     </ion-list>
+        <ion-card>
+      <ion-card-header>
+        Visiting Era
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+    <div padding>
+  <ion-segment color="danger" [(ngModel)]="place">
+    <ion-segment-button color="secondary" value="Eat">
+      EAT
+    </ion-segment-button>
+    <ion-segment-button color="secondary" value="Travel">
+      TRAVEL
+    </ion-segment-button>
+        <ion-segment-button color="secondary" value="Sleep">
+      Sleep
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+<div [ngSwitch]="place">
+  <ion-list *ngSwitchCase="'Eat'">
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="img/thumbnail-puppy-1.jpg">
+      </ion-thumbnail>
+      <h2>Ruby</h2>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'Travel'">
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="img/thumbnail-kitten-1.jpg">
+      </ion-thumbnail>
+      <h2>Luna</h2>
+    </ion-item>
+
+  </ion-list>
+  <ion-list *ngSwitchCase="'Sleep'">
+  <ion-item>
+    <ion-thumbnail item-left>
+      <img src="img/thumbnail-totoro.png">
+    </ion-thumbnail>
+    <h2>My Neighbor Totoro</h2>
+    <p>Hayao Miyazaki • 1988</p>
+    <button ion-button clear item-right>View</button>
+  </ion-item>
+</ion-list>
+</div>
 </ion-content>
 
  

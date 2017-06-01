@@ -4,31 +4,31 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>TravelWithMe</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
-<ion-content padding>
+
+
 
  
 <ion-slides pager>
 
-  <ion-slide style="background-color: white">
-    <button ion-button block (click)="auth.login()">Wanna Start?</button>
+  <ion-slide style="background-color: #e74c3c" >
+    <h4 style="color:white">Travel Easy and comfort</h4>
+      <img src="assets/world.jpg" class="img-responsive img-fluid">
+   <button ion-button color="light" full (click)="this.slides.slideNext();">Next</button>
   </ion-slide>
 
-  <ion-slide style="background-color: blue">
-    <h2>Slide 2</h2>
+  <ion-slide style="background-color: #e74c3c">
+     <img src="assets/welcome.png" class="img-responsive img-fluid">
+     <h4 style="color:white">Write a blog with your experiance</h4>
+     <button full ion-button color="light" (click)="this.slides.slideNext();">Next</button>
   </ion-slide>
 
-  <ion-slide style="background-color: red">
-    <h2>Slide 3</h2>
+  <ion-slide style="background-color: #e74c3c">
+          <img src="assets/business.jpg" class="img-responsive img-fluid">
+           <h4 style="color:white">Post Your Adverticement Free</h4>
+     <button ion-button block (click)="auth.login()" color="light">Wanna Start?</button>
   </ion-slide>
 
 </ion-slides>
-</ion-content>
+
