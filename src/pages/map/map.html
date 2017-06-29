@@ -30,5 +30,7 @@
 
 
 <ion-content padding>
-<div #map id="map" style="height:100%;"></div>
+<div ng-if=false #map id="map" style="height:100%;"></div>
+<button (click)="presentActionSheet() " ion-button color="danger" clear>Danger Clear</button>
+
 </ion-content>

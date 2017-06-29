@@ -1,64 +1,111 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
-import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
+import { GoogleMap, GoogleMapsEvent } from 'ionic-native';
+import { ActionSheetController } from 'ionic-angular';
+
 /**
  * Generated class for the Map page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+declare var google:any;
 @IonicPage()
+
+
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html',
 })
+
+
 export class Map {
- map: GoogleMap;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform) {
+  map: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform,public actionSheetCtrl: ActionSheetController) {
      platform.ready().then(() => {
-            this.loadMap();
+            
         });
   }
 
+presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Modify your album',
+      buttons: [
+        {
+          text: 'Destructive',
+          role: 'destructive',
+          handler: () => {
+            console.log('Destructive clicked');
+          }
+        },{
+          text: 'Archive',
+          handler: () => {
+            console.log('Archive clicked');
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad Map');
-    this.map = new GoogleMap('map');
+    this.initMap();
   
   }
-
-
- loadMap(){
-
-        let location = new GoogleMapsLatLng(-34.9290,138.6010);
-
-        this.map = new GoogleMap('map', {
-          'backgroundColor': 'white',
-          'controls': {
-            'compass': true,
-            'myLocationButton': true,
-            'indoorPicker': true,
-            'zoom': true
-          },
-          'gestures': {
-            'scroll': true,
-            'tilt': true,
-            'rotate': true,
-            'zoom': true
-          },
-          'camera': {
-            'latLng': location,
-            'tilt': 30,
-            'zoom': 15,
-            'bearing': 50
-          }
-        });
-
-        this.map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
-
-    }
-  backPage(){
-
-    this.navCtrl.pop();
+  ngOnInit(){
+ this.initMap();
   }
+private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+  directionsService.route({
+    origin: pointA,
+    destination: pointB,
+    travelMode: google.maps.TravelMode.DRIVING
+  }, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+}
+private initMap() {
+  var pointA = new google.maps.LatLng(51.7519, -1.2578)
+   var pointB = new google.maps.LatLng(50.8429, -0.1313),
+    myOptions = {
+      zoom: 7,
+      center: pointA
+    },
+    map = new google.maps.Map(document.getElementById('map'), myOptions),
+    // Instantiate a directions service.
+    directionsService = new google.maps.DirectionsService,
+    directionsDisplay = new google.maps.DirectionsRenderer({
+      map: map
+    }),
+    markerA = new google.maps.Marker({
+      position: pointA,
+      title: "point A",
+      label: "A",
+      map: map
+    }),
+    markerB = new google.maps.Marker({
+      position: pointB,
+      title: "point B",
+      label: "B",
+      map: map
+    });
+
+  // get route from A to B
+  this.calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+
+}
+
+
 
 }

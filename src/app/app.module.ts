@@ -27,7 +27,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Auth } from '../providers/auth';
 import { AdvModal } from "../pages/adv-modal/adv-modal";
 import { Search } from "../pages/search/search"
-
+import {SearchResult } from"../pages/search-result/search-result"
 
 @NgModule({
   declarations: [
@@ -46,7 +46,8 @@ import { Search } from "../pages/search/search"
     IonSimpleWizard,
     IonSimpleWizardStep,
     AdvModal,
-    Search
+    Search,
+    SearchResult
 
   ],
   imports: [
@@ -70,7 +71,8 @@ import { Search } from "../pages/search/search"
     IonSimpleWizard,
     IonSimpleWizardStep,
     AdvModal,
-    Search
+    Search,
+    SearchResult
   ],
   providers: [
     StatusBar,

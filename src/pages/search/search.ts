@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SearchResult } from "../search-result/search-result";
 
 /**
  * Generated class for the Search page.
@@ -17,6 +18,7 @@ export class Search {
   viewCtrl: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
   ionViewDidLoad() {
@@ -25,5 +27,16 @@ export class Search {
 
 dismiss() {
     this.navCtrl.pop();         
-    }
+  }
+  
+  pushPage(){
+    // push another page onto the navigation stack
+    // causing the nav controller to transition to the new page
+    // optional data can also be passed to the pushed page.
+    this.navCtrl.push(SearchResult, {
+      search_type: "123",
+      search_query: "Carl"
+    });
+  }
+
 }
