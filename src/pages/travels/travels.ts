@@ -21,7 +21,7 @@ export class Travels {
     console.log('ionViewDidLoad Travels');
   }
  pushPage(){
-  
+  console.log('ionViewDidLoad Travels');
     this.navCtrl.push(Map, {
      
     });

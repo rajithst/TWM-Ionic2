@@ -1,30 +1,31 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Post } from "../post/post";
 
 /**
- * Generated class for the Articles page.
+ * Generated class for the Post page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-articles',
-  templateUrl: 'articles.html',
+  selector: 'page-post',
+  templateUrl: 'post.html',
 })
-export class Articles {
+export class Post {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Articles');
+    console.log('ionViewDidLoad Post');
   }
 
-
-    pushPage(){
-   
+    
+  pushPage(){
+    // push another page onto the navigation stack
+    // causing the nav controller to transition to the new page
+    // optional data can also be passed to the pushed page.
     this.navCtrl.push(Post, {
     
     });

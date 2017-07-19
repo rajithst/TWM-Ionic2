@@ -28,6 +28,7 @@ import { Auth } from '../providers/auth';
 import { AdvModal } from "../pages/adv-modal/adv-modal";
 import { Search } from "../pages/search/search"
 import {SearchResult } from"../pages/search-result/search-result"
+import { Post } from "../pages/post/post";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {SearchResult } from"../pages/search-result/search-result"
     AdvModal,
     Search,
     SearchResult,
-    TripList
+    TripList,
+    Post
 
   ],
   imports: [
@@ -74,7 +76,8 @@ import {SearchResult } from"../pages/search-result/search-result"
     AdvModal,
     Search,
     SearchResult,
-    TripList
+    TripList,
+    Post
   ],
   providers: [
     StatusBar,
