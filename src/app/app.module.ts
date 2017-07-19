@@ -21,7 +21,7 @@ import {IonSimpleWizardStep} from '../pages/ion-simple-wizard/ion-simple-wizard.
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { TripList } from "../pages/trip-list/trip-list";
 
 
 import { Auth } from '../providers/auth';
@@ -47,7 +47,8 @@ import {SearchResult } from"../pages/search-result/search-result"
     IonSimpleWizardStep,
     AdvModal,
     Search,
-    SearchResult
+    SearchResult,
+    TripList
 
   ],
   imports: [
@@ -72,7 +73,8 @@ import {SearchResult } from"../pages/search-result/search-result"
     IonSimpleWizardStep,
     AdvModal,
     Search,
-    SearchResult
+    SearchResult,
+    TripList
   ],
   providers: [
     StatusBar,

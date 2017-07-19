@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { GoogleMap, GoogleMapsEvent } from 'ionic-native';
 import { ActionSheetController } from 'ionic-angular';
+import { TripList } from "../trip-list/trip-list";
 
 /**
  * Generated class for the Map page.
@@ -56,10 +57,11 @@ presentActionSheet() {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad Map');
-    this.initMap();
+   
   
   }
   ngOnInit(){
+     
  this.initMap();
   }
 private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
@@ -75,6 +77,9 @@ private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, p
     }
   });
 }
+
+
+
 private initMap() {
   var pointA = new google.maps.LatLng(51.7519, -1.2578)
    var pointB = new google.maps.LatLng(50.8429, -0.1313),
