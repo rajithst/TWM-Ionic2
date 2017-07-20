@@ -21,7 +21,10 @@ export class Articles {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Articles');
   }
-
+ ionViewWillUnload() {
+    console.log("Looks like I'm about to leave :(");
+      this.navCtrl.pop(Post);
+  }
 
     pushPage(){
    

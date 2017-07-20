@@ -57,7 +57,7 @@ presentActionSheet() {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad Map');
-   
+   google.maps.event.trigger( this.map, 'resize' );
   
   }
   ngOnInit(){
