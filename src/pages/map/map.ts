@@ -77,39 +77,98 @@ private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, p
     }
   });
 }
+ private initMap() {
+   var pointA = new google.maps.LatLng(6.927078600000002, 79.86124300000006)
+   var pointB = new google.maps.LatLng( 7.290571500000001, 80.63372619999996)
+        var map = new google.maps.Map(document.getElementById('map'), {
+           zoom: 7,
+          center: {lat: 7.290571500000001, lng: 80.63372619999996}  // Australia.
+        });
 
-
-
-private initMap() {
-  var pointA = new google.maps.LatLng(51.7519, -1.2578)
-   var pointB = new google.maps.LatLng(50.8429, -0.1313),
-    myOptions = {
-      zoom: 7,
-      center: pointA
-    },
-    map = new google.maps.Map(document.getElementById('map'), myOptions),
-    // Instantiate a directions service.
-    directionsService = new google.maps.DirectionsService,
-    directionsDisplay = new google.maps.DirectionsRenderer({
-      map: map
-    }),
-    markerA = new google.maps.Marker({
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+          draggable: true,
+          map: map,
+          
+        });
+    var markerA = new google.maps.Marker({
       position: pointA,
       title: "point A",
       label: "A",
       map: map
-    }),
-    markerB = new google.maps.Marker({
+    });
+   var markerB = new google.maps.Marker({
       position: pointB,
       title: "point B",
       label: "B",
       map: map
     });
 
-  // get route from A to B
-  this.calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+        directionsDisplay.addListener('directions_changed', function() {
+          this.computeTotalDistance(directionsDisplay.getDirections());
+        });
 
-}
+        this.displayRoute(pointA, pointB, directionsService,
+            directionsDisplay);
+      }
+
+      private displayRoute(origin, destination, service, display) {
+        service.route({
+          origin: origin,
+          destination: destination,
+          // waypoints: [{location: 'Adelaide, SA'}, {location: 'Broken Hill, NSW'}],
+          travelMode: 'DRIVING',
+          avoidTolls: true
+        }, function(response, status) {
+          if (status === 'OK') {
+            display.setDirections(response);
+          } else {
+            alert('Could not display directions due to: ' + status);
+          }
+        });
+      }
+
+      private computeTotalDistance(result) {
+        var total = 0;
+        var myroute = result.routes[0];
+        for (var i = 0; i < myroute.legs.length; i++) {
+          total += myroute.legs[i].distance.value;
+        }
+        total = total / 1000;
+        document.getElementById('total').innerHTML = total + ' km';
+      }
+
+
+// private initMap() {
+//   var pointA = new google.maps.LatLng(51.7519, -1.2578)
+//    var pointB = new google.maps.LatLng(50.8429, -0.1313),
+//     myOptions = {
+//       zoom: 7,
+//       center: pointA
+//     },
+//     map = new google.maps.Map(document.getElementById('map'), myOptions),
+//     // Instantiate a directions service.
+//     directionsService = new google.maps.DirectionsService,
+//     directionsDisplay = new google.maps.DirectionsRenderer({
+//       map: map
+//     }),
+//     markerA = new google.maps.Marker({
+//       position: pointA,
+//       title: "point A",
+//       label: "A",
+//       map: map
+//     }),
+//     markerB = new google.maps.Marker({
+//       position: pointB,
+//       title: "point B",
+//       label: "B",
+//       map: map
+//     });
+
+//   // get route from A to B
+//   this.calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+
+// }
 
 
 

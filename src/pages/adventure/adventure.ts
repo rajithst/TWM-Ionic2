@@ -160,6 +160,7 @@ export class Adventure implements OnInit {
 
 refereshmap(){
     google.maps.event.trigger(this.map, 'resize');
+    
 }
 
     showModal() {
@@ -227,6 +228,7 @@ refereshmap(){
     }
 
     private initMap() {
+    
         var point = {lat: -34.603684, lng: -58.381559}; 
         let divMap = (<HTMLInputElement>document.getElementById('map'));
         this.map = new google.maps.Map(divMap, {
@@ -243,6 +245,7 @@ refereshmap(){
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
           map: this.map,
+          
           position: placeLoc
         });    
         this.markers.push(marker);
