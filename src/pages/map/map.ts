@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { GoogleMap, GoogleMapsEvent } from 'ionic-native';
 import { ActionSheetController } from 'ionic-angular';
 import { TripList } from "../trip-list/trip-list";
-
+import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the Map page.
  *
@@ -22,8 +22,8 @@ declare var google:any;
 
 export class Map {
   map: any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform,public actionSheetCtrl: ActionSheetController) {
+  markers :any;
+  constructor(public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams,public platform: Platform,public actionSheetCtrl: ActionSheetController) {
      platform.ready().then(() => {
             
         });
@@ -128,7 +128,7 @@ private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, p
         });
       }
 
-      private computeTotalDistance(result) {
+      public computeTotalDistance(result) {
         var total = 0;
         var myroute = result.routes[0];
         for (var i = 0; i < myroute.legs.length; i++) {
@@ -138,6 +138,16 @@ private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, p
         document.getElementById('total').innerHTML = total + ' km';
       }
 
+   private deleteMarkers() {
+        this.setMapOnAll(null);
+        this.markers = [];
+      }
+
+           private setMapOnAll(map) {
+        for (var i = 0; i < this.markers.length; i++) {
+          this.markers[i].setMap(map);
+        }
+      }
 
 // private initMap() {
 //   var pointA = new google.maps.LatLng(51.7519, -1.2578)
@@ -171,5 +181,57 @@ private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, p
 // }
 
 
+private showConfirm() {
+    let confirm = this.alertCtrl.create({
+      title: 'Are you sure?',
+      message: 'Are you sure to clear all the waypoints?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 
+   showPrompt() {
+    let prompt = this.alertCtrl.create({
+      title: 'Login',
+      message: "Enter a name for this new album you're so keen on adding",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Title'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          
+
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
 }
+
+
