@@ -202,7 +202,7 @@ refereshmap(){
                 self.placedetails.lat = place.geometry.location.lat();
                 self.placedetails.lng = place.geometry.location.lng();
                 self.placedetails.photo_reference = place.photos[0].getUrl({'maxWidth': 480, 'maxHeight': 246});
-               
+               self.placedetails.photo_pack = place.photos;
                 for (var i = 0; i < place.address_components.length; i++) {
                     let addressType = place.address_components[i].types[0];
                     let values = {

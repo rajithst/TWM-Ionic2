@@ -193,11 +193,18 @@
  
 
            <ion-card *ngIf="address.set==true">
+              <div class="card-title" style="position: absolute; z-index: 999; background-color: rgba(0,0,0,.2); height:26px">{{ placedetails.address }}</div>
+    <div class="card-subtitle position: absolute; z-index: 999;">{{ placedetails.components.route.long }}</div>
              <div style="box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);" >
-    <img class="img-responcive img-fluid"  src="{{placedetails.photo_reference}}"/>
+               <ion-slides *ngIf=placedetails.photo_pack>
+                 
+  <ion-slide *ngFor="let photo of placedetails.photo_pack" >
+    <h1><img class="img-responcive img-fluid" [src]="photo.getUrl({'maxWidth': 480, 'maxHeight': 246}) "/></h1>
+  </ion-slide>
+</ion-slides>
+
      </div>
-    <div class="card-title" style="background-color: rgba(0,0,0,.2); height:26px">{{ placedetails.address }}</div>
-    <div class="card-subtitle">{{ placedetails.components.route.long }}</div>
+   
       <ion-fab bottom right dark>
 
     <button ion-fab mini><ion-icon name="share"></ion-icon></button>
