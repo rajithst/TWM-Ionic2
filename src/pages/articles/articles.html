@@ -15,20 +15,20 @@
 
 <ion-content >
 
-<ion-card>
+<ion-card *ngFor="let item of posts">
 
   <ion-item>
     <ion-avatar item-left>
-      <img src="http://i.telegraph.co.uk/multimedia/archive/03491/Vladimir_Putin_1_3491835k.jpg">
+      <img [src]="item.img">
     </ion-avatar>
-    <h2>Marty McFly</h2>
-    <p>November 5, 1955</p>
+    <h2>{{item.username}}</h2>
+    <p>{{item.dateAdded}}</p>
   </ion-item>
 
   <img src="https://c1.staticflickr.com/8/7455/12252284106_b2fd041c04_b.jpg" (click)="pushPage()">
-
+ <h4>{{ item.postTtile}}</h4>
   <ion-card-content>
-    <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+    <p [innerHTML]="item.body"> </p>
 
   
   </ion-card-content>

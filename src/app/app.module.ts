@@ -29,6 +29,16 @@ import { AdvModal } from "../pages/adv-modal/adv-modal";
 import { Search } from "../pages/search/search"
 import {SearchResult } from"../pages/search-result/search-result"
 import { Post } from "../pages/post/post";
+import { ValidateService } from "../service/validate.service";
+import { AuthService } from "../service/auth-service/auth-service";
+import { AuthGuard } from "../service/auth.guard";
+import { BusinesspageService } from "../service/businesspage.service";
+import { BlogServiceService } from "../service/blog-service.service";
+import { GooglemapsService } from "../service/googlemaps.service";
+import { FacebookService } from "../service/facebook.service";
+import { UserServicesService } from "../service/user-services.service";
+import { Auth0Service } from "../service/auth0.service";
+import { GoogleAPIService } from "../service/google-api.service";
 
 @NgModule({
   declarations: [
@@ -80,6 +90,18 @@ import { Post } from "../pages/post/post";
     Post
   ],
   providers: [
+
+    ValidateService,
+    AuthService,
+    AuthGuard,
+    BusinesspageService,
+    GooglemapsService,
+    BlogServiceService,
+    Auth0Service,
+    FacebookService,
+    GoogleAPIService,
+    UserServicesService,
+    
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
