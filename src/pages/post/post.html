@@ -14,13 +14,14 @@
 
 
 <ion-content padding>
-<ion-card>
+<ion-card *ngIf="postdata">
    <img src="http://img.freepik.com/free-vector/designers-working-together-with-reports_23-2147495188.jpg?size=338&ext=jpg" />
   <ion-card-header>
-    Temple Of Tooth
+    {{postdata.postTtile}}
+     <p>Written by <a>{{postdata.username}}</a>, 26.03.2016</p>
   </ion-card-header>
-  <ion-card-content>
-    The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+  <ion-card-content [innerHTML]="postdata.body">
+   
   </ion-card-content>
 </ion-card>
 </ion-content>

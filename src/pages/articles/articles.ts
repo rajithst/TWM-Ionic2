@@ -80,7 +80,7 @@ if(data){
 
     pushPage(){
    
-    this.navCtrl.push(Post, {
+    this.navCtrl.push(Post, {   firstPassed: '{{item_id}}',
     
     });
   }
