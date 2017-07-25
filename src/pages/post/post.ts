@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http,Headers,Response } from "@angular/http";
 
@@ -12,7 +12,7 @@ import { Http,Headers,Response } from "@angular/http";
 @Component({
   selector: 'page-post',
   templateUrl: 'post.html',
-
+ encapsulation:ViewEncapsulation.None
 })
 export class Post {
   postID: string;

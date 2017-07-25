@@ -41,6 +41,8 @@ export class Articles {
       profilepic :this.profile.picture_large,
       name :this.profile.name
     };
+
+ 
 if(data){
 
 
@@ -86,5 +88,13 @@ if(data){
     
     });
   }
-
+   refresh(refresher){
+     this.ionViewDidLoad();
+               setTimeout(() => {
+       console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+    }
 }
+
+ 
