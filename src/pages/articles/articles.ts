@@ -29,7 +29,7 @@ export class Articles {
   results:any;
   followers:any;
   posts:any;
-
+  postid:any;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Articles');
@@ -59,6 +59,7 @@ if(data){
 
           this.BlogService.getPosts(Userdata.id).subscribe(res=>{
             this.posts = res.data[ res.data.length-1]
+          
             console.log(this.posts)
 
 
@@ -79,8 +80,9 @@ if(data){
   }
 
     pushPage(){
-   
-    this.navCtrl.push(Post, {   firstPassed: '{{item_id}}',
+      let item = this.posts;
+      this.navCtrl.push(Post, {
+        id: item[0]._id  ,
     
     });
   }
