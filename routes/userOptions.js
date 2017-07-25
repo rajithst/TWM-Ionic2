@@ -25,4 +25,25 @@ router.post('/FollowOption',function (req,res) {
 
 });
 
+
+router.get('/search/:section/:text',function (req,res) {
+    
+
+    const  section= req.params.section;
+    const text = req.params.text;
+
+    SM.getresults(section,text,function (err,docs) {
+        if (err) throw err;
+
+        if (docs){
+
+            res.json(docs)
+        }
+
+
+
+    });
+
+});
+
 module.exports = router;

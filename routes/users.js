@@ -84,78 +84,82 @@
 
     router.post('/checkid',function (req,res) {
 
+            if(Object.keys(req.body).length >=5) {
+
+                SM.checkId(req.body.id, req.body.provider, req.body.profilepic, req.body.name, function (err, match) {
+                    if (err) throw err;
+                    if (match) {
+
+                        var options = {
+                            method: 'POST',
+                            url: 'https://travelproject.auth0.com/oauth/token',
+                            headers: {'content-type': 'application/json'},
+                            body: '{"client_id":"8cfUH0JgfwIwXfMJwH1jSPh6q0KlubWw","client_secret":"EuDgEwp7sxP_v8oiDN4oXOYKo32qKyeKbsn0_bsL6ZyRt5y-fKN-bDk5w63OsGQF","audience":"https://travelproject.auth0.com/api/v2/","grant_type":"client_credentials"}'
+                        };
+                        request(options, function (error, response, body) {
+
+                            const accessToken = JSON.parse(body).access_token;
+                            const type = JSON.parse(body).token_type;
 
 
-        SM.checkId(req.body.id,req.body.provider,req.body.profilepic,req.body.name,function (err,match) {
-            if (err) throw err;
-            if (match){
+                            const opts = {
+                                method: 'GET',
+                                url: 'https://travelproject.auth0.com/api/v2/users/' + req.body.userid,
+                                headers: {
+                                    Authorization: type + " " + accessToken
 
-                var options = { method: 'POST',
-                    url: 'https://travelproject.auth0.com/oauth/token',
-                    headers: { 'content-type': 'application/json' },
-                    body: '{"client_id":"8cfUH0JgfwIwXfMJwH1jSPh6q0KlubWw","client_secret":"EuDgEwp7sxP_v8oiDN4oXOYKo32qKyeKbsn0_bsL6ZyRt5y-fKN-bDk5w63OsGQF","audience":"https://travelproject.auth0.com/api/v2/","grant_type":"client_credentials"}' };
-                request(options, function(error, response, body) {
+                                }
+                            };
 
-                    const accessToken = JSON.parse(body).access_token;
-                    const type = JSON.parse(body).token_type;
+                            request(opts, function (error, response, body) {
+
+                                const databody = JSON.parse(body);
+                                databody.personal = match;
+
+                                let hometown = databody.hometown;
+
+                                if (hometown == undefined) {
+
+                                    let district = ["kandy", 'Galle', 'Rathnapura', 'Kegalle', 'Mathara', 'Colombo', 'Badulla'];
+                                    let districtitem = Math.floor(Math.random() * 5) + 1;
+                                    let disname = district[districtitem];
+
+                                    let places = ["visiting places", "tourist places", "top sights", "tourist attraction"];
+                                    let item = Math.floor(Math.random() * 3) + 1;
+                                    let keyword = places[item];
+
+                                    client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + disname + keyword + "&key=AIzaSyD1wsxf68A21P1FVZyMBeop5X3io-2MH_E", function (data, response) {
+
+                                        databody.nearby = data;
+
+                                        res.json({success: true, data: databody});
+
+                                    });
+
+                                } else {
+                                    let hometown = databody.hometown.name;
+                                    let places = ["visiting places", "tourist places", "top sights", "tourist attraction"];
+                                    let item = Math.floor(Math.random() * 3) + 1;
+                                    let keyword = places[item];
+
+                                    client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + hometown + keyword + "&key=AIzaSyBhvuK4j4q0eXP_CBxUmRFpW9Ki7N55Il4", function (data, response) {
 
 
-                    const opts= {
-                        method: 'GET',
-                            url: 'https://travelproject.auth0.com/api/v2/users/'+req.body.userid,
-                            headers: {Authorization:type+" "+accessToken
+                                        databody.nearby = data;
+                                        res.json({success: true, data: databody});
 
-                            }
-                    };
-
-                    request(opts, function(error, response, body){
-
-                     const databody = JSON.parse(body);
-                        databody.personal = match;
-
-                        let hometown = databody.hometown;
-
-                        if(hometown == undefined){
-
-                            let district = ["kandy",'Galle','Rathnapura','Kegalle','Mathara','Colombo','Badulla'];
-                            let districtitem = Math.floor(Math.random() * 5) + 1;
-                            let disname = district[districtitem];
-
-                            let places = ["visiting places","tourist places","top sights","tourist attraction"];
-                                let item = Math.floor(Math.random() * 3) + 1;
-                                let keyword = places[item];
-
-                              client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+disname+keyword+"&key=AIzaSyD1wsxf68A21P1FVZyMBeop5X3io-2MH_E", function (data, response) {
-
-                            databody.nearby = data;
-
-                            res.json({success:true,data:databody});
+                                    });
+                                }
 
                             });
 
-                        }else {
-                        let hometown = databody.hometown.name;
-                        let places = ["visiting places","tourist places","top sights","tourist attraction"];
-                        let item = Math.floor(Math.random() * 3) + 1;
-                        let keyword = places[item];
 
-                        client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+hometown+ keyword+"&key=AIzaSyBhvuK4j4q0eXP_CBxUmRFpW9Ki7N55Il4", function (data, response) {
+                        });
 
-
-                            databody.nearby = data;
-                            res.json({success:true,data:databody});
-
-                            });
                     }
 
                 });
-
-
-            });
-
             }
-
-        });
 
     });
 
