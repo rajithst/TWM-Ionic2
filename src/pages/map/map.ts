@@ -58,12 +58,11 @@ presentActionSheet() {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Map');
    google.maps.event.trigger( this.map, 'resize' );
-    this.initMap();
+  
   
   }
   ngOnInit(){
      
- this.initMap();
   }
 private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
   directionsService.route({
@@ -77,7 +76,16 @@ private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, p
       window.alert('Directions request failed due to ' + status);
     }
   });
-}
+}      public computeTotalDistance(result) {
+        var total = 0;
+        var myroute = result.routes[0];
+        for (var i = 0; i < myroute.legs.length; i++) {
+          total += myroute.legs[i].distance.value;
+        }
+        total = total / 1000;
+        document.getElementById('total').innerHTML = total + ' km';
+      }
+
  private initMap() {
    var pointA = new google.maps.LatLng(6.927078600000002, 79.86124300000006)
    var pointB = new google.maps.LatLng(6.8666988, 81.046553)
@@ -129,15 +137,6 @@ private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, p
         });
       }
 
-      public computeTotalDistance(result) {
-        var total = 0;
-        var myroute = result.routes[0];
-        for (var i = 0; i < myroute.legs.length; i++) {
-          total += myroute.legs[i].distance.value;
-        }
-        total = total / 1000;
-        document.getElementById('total').innerHTML = total + ' km';
-      }
 
    private deleteMarkers() {
         this.setMapOnAll(null);
@@ -197,7 +196,7 @@ private showConfirm() {
           text: 'Yes',
           handler: () => {
             console.log('Agree clicked');
-             this.ionViewDidLoad()
+             this.initMap()
           }
         }
       ]
