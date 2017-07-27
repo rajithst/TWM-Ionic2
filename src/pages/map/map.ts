@@ -76,7 +76,10 @@ private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, p
       window.alert('Directions request failed due to ' + status);
     }
   });
-}      public computeTotalDistance(result) {
+}   
+
+
+    private computeTotalDistance(result:any) {
         var total = 0;
         var myroute = result.routes[0];
         for (var i = 0; i < myroute.legs.length; i++) {
@@ -112,10 +115,8 @@ private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, p
       label: "B",
       map: map
     });
-
-        directionsDisplay.addListener('directions_changed', function() {
-          this.computeTotalDistance(directionsDisplay.getDirections());
-        });
+      
+   
 
         this.displayRoute(pointA, pointB, directionsService,
             directionsDisplay);
