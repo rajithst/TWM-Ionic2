@@ -1,3 +1,12 @@
 page-articles {
 
+.limitedtext {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 10em;     /* fallback */
+  max-height: 7em;      /* fallback */
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
 }

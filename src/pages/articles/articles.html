@@ -19,7 +19,7 @@
   <ion-refresher-content></ion-refresher-content>
 </ion-refresher>
 
-<ion-card *ngFor="let item of posts">
+<!--<ion-card *ngFor="let item of posts">
 
   <ion-item>
     <ion-avatar item-left>
@@ -31,7 +31,38 @@
 
   <img src="https://c1.staticflickr.com/8/7455/12252284106_b2fd041c04_b.jpg" (click)="pushPage()" >
  <h4>{{ item.postTtile}}</h4>
-  <ion-card-content>
+  <ion-card-content class="limitedtext">
+    <p [innerHTML]="item.body"> </p>
+
+  
+  </ion-card-content>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-left clear small (click)="pushPage()">
+        <ion-icon name="ion-eye"></ion-icon>
+       <div>View post</div>
+      </button>
+    </ion-col>
+
+
+  </ion-row>
+
+</ion-card>-->
+
+<ion-card >
+
+  <ion-item>
+    <ion-avatar item-left>
+      <img [src]="assets/rajith.png">
+    </ion-avatar>
+    <h2>Rajith Thennakoon</h2>
+    <p>July 28 2017</p>
+  </ion-item>
+
+  <img src="https://www.srilankatravelandtourism.com/places-sri-lanka/ella/ella-images/ella-1-sri-lanka.jpg" (click)="pushPage()" >
+ <h4>{{ item.postTtile}}</h4>
+  <ion-card-content class="limitedtext">
     <p [innerHTML]="item.body"> </p>
 
   

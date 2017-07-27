@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-
+import { Articles } from '../pages/articles/articles';
 import { Adventure } from '../pages/adventure/adventure';
 import { Profile } from '../pages/profile/profile';
 import { Settings } from '../pages/settings/settings';
@@ -22,7 +22,7 @@ export class MyApp {
   profile: any;
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = Articles;
 
   pages: Array<{title: string, component: any,icon:any}>;
 
