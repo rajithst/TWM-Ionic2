@@ -60,7 +60,7 @@ if(data){
           const Userdata = {id:data.id};
 
           this.BlogService.getPosts(Userdata.id).subscribe(res=>{
-            this.posts = res.data[ res.data.length-1]
+             this.posts = res.data;
           
             console.log(this.posts)
 
@@ -78,7 +78,7 @@ if(data){
   }
  ionViewWillUnload() {
     console.log("Looks like I'm about to leave :(");
-      this.navCtrl.pop(Post);
+    
   }
 
     pushPage(){
