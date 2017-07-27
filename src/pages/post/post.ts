@@ -26,7 +26,7 @@ export class Post {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Post');
         let headers = new Headers();
-    this.http.get("http://localhost:3000/blog/getPostdata/"+this.postID,{headers:headers}).subscribe((res:Response)=>{
+    this.http.get("https://frozen-mesa-55665.herokuapp.com/blog/getPostdata/"+this.postID,{headers:headers}).subscribe((res:Response)=>{
       this.postdata = res.json().data[0];
       console.log(this.postdata)
     })

@@ -13,7 +13,7 @@ export class UserServicesService {
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/option/FollowOption',options, {headers: headers}).map(res => res.json());
+    return this.http.post('https://frozen-mesa-55665.herokuapp.com/users/option/FollowOption',options, {headers: headers}).map(res => res.json());
 
   }
 
