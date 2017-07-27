@@ -25,7 +25,7 @@ export class Map {
   markers :any;
   constructor(public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams,public platform: Platform,public actionSheetCtrl: ActionSheetController) {
      platform.ready().then(() => {
-            
+             this.initMap();
         });
   }
 
@@ -58,6 +58,7 @@ presentActionSheet() {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Map');
    google.maps.event.trigger( this.map, 'resize' );
+    this.initMap();
   
   }
   ngOnInit(){
@@ -196,6 +197,7 @@ private showConfirm() {
           text: 'Yes',
           handler: () => {
             console.log('Agree clicked');
+             this.ionViewDidLoad()
           }
         }
       ]

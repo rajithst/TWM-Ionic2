@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Map } from '../../pages/map/map';
-import {TripService} from '../service/trip.service';
+import {TripService} from '../../service/trip.service';
+import { Trip} from './trip.class';
 /**
  * Generated class for the TripList page.
  *
@@ -12,7 +13,9 @@ import {TripService} from '../service/trip.service';
 @Component({
   selector: 'page-trip-list',
   templateUrl: 'trip-list.html',
+  providers: [TripService],
 })
+
 export class TripList {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public tripservice : TripService) {
@@ -20,6 +23,7 @@ export class TripList {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TripList');
+    this.gettrip();
   }
   trips : Trip;
   gettrip(){
