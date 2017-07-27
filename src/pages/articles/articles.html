@@ -19,7 +19,7 @@
   <ion-refresher-content></ion-refresher-content>
 </ion-refresher>
 
-<!--<ion-card *ngFor="let item of posts">
+<ion-card *ngFor="let item of posts">
 
   <ion-item>
     <ion-avatar item-left>
@@ -29,8 +29,13 @@
     <p>{{item.dateAdded}}</p>
   </ion-item>
 
-  <img src="https://c1.staticflickr.com/8/7455/12252284106_b2fd041c04_b.jpg" (click)="pushPage()" >
- <h4>{{ item.postTtile}}</h4>
+  <img [src]="item.featured_img" (click)="pushPage()" >
+   <ion-card-header class="card-header card-header-md">
+
+  <h1>{{ item.postTtile}}</h1>
+
+  </ion-card-header>
+ 
   <ion-card-content class="limitedtext">
     <p [innerHTML]="item.body"> </p>
 
@@ -48,7 +53,7 @@
 
   </ion-row>
 
-</ion-card>-->
+</ion-card>
 
 <ion-card >
 
