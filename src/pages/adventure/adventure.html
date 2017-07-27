@@ -182,14 +182,7 @@
         </ion-card>-->
 
 <button *ngIf="address.set==true" ion-button full color="dark"  (click)="showModal()">Pick a Location</button>
-    <ion-card>
-      <ion-card-header>
-        Ratings
-      </ion-card-header>
-      <ion-card-content>
-        <canvas #doughnutCanvas></canvas>
-      </ion-card-content>
-    </ion-card>
+
  
 
            <ion-card *ngIf="address.set==true">
@@ -220,14 +213,7 @@
   </ion-fab>
   </ion-card>
     </ion-list>
-        <ion-card>
-      <ion-card-header>
-        Visiting Era
-      </ion-card-header>
-      <ion-card-content>
-        <canvas #lineCanvas></canvas>
-      </ion-card-content>
-    </ion-card>
+
     <div padding>
   <ion-segment color="danger" [(ngModel)]="place">
     <ion-segment-button color="secondary" value="Eat">
@@ -246,31 +232,46 @@
   <ion-list *ngSwitchCase="'Eat'">
     <ion-item>
       <ion-thumbnail item-left>
-        <img src="img/thumbnail-puppy-1.jpg">
+        <img src="https://lh3.googleusercontent.com/proxy/s4ITDrU4pYyE6wssFucW_ZnU5gdOdUwZFjsKHsi48qBibus1f9-4KXmlV-r9S0CueAmxM52PvkQCJUp8e-WdFCIrKpy4nuvzt62gztSVkpQrAiWFcPbeLuuGjOcU5-GRApAmCyvdSn4cpVktW8m06FSgX_owOg=w408-h306-k-no">
       </ion-thumbnail>
-      <h2>Ruby</h2>
+      <h2 >Ravana Heights</h2>
     </ion-item>
-
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="https://lh3.googleusercontent.com/-c8ggBD10iZ0/VNns5QLuDFI/AAAAAAAAAA4/-3iv_xAnzJ4rRsadZQcE8olfQ0ahMPF2wCJkC/w408-h306-k-no/">
+      </ion-thumbnail>
+      <h2 >Hotel Heaven's Edge</h2>
+    </ion-item>
   </ion-list>
 
   <ion-list *ngSwitchCase="'Travel'">
+<ion-item>
+      <ion-thumbnail item-left>
+        <img src="http://www.voyagevirtuel.info/sri-lanka/bigphotos/road-pont-kwai-1.jpg">
+      </ion-thumbnail>
+      <h2 >Kalu Gala</h2>
+    </ion-item>
     <ion-item>
       <ion-thumbnail item-left>
-        <img src="img/thumbnail-kitten-1.jpg">
+        <img src="http://amazinglanka.com/wp/wp-content/uploads/2014/03/bomburu2-600x336.jpg">
       </ion-thumbnail>
-      <h2>Luna</h2>
+      <h2 >Bomuru Ella</h2>
     </ion-item>
 
   </ion-list>
   <ion-list *ngSwitchCase="'Sleep'">
-  <ion-item>
-    <ion-thumbnail item-left>
-      <img src="img/thumbnail-totoro.png">
-    </ion-thumbnail>
-    <h2>My Neighbor Totoro</h2>
-    <p>Hayao Miyazaki • 1988</p>
-    <button ion-button clear item-right>View</button>
-  </ion-item>
+<ion-item>
+      <ion-thumbnail item-left>
+        <img src="https://lh3.googleusercontent.com/proxy/s4ITDrU4pYyE6wssFucW_ZnU5gdOdUwZFjsKHsi48qBibus1f9-4KXmlV-r9S0CueAmxM52PvkQCJUp8e-WdFCIrKpy4nuvzt62gztSVkpQrAiWFcPbeLuuGjOcU5-GRApAmCyvdSn4cpVktW8m06FSgX_owOg=w408-h306-k-no">
+      </ion-thumbnail>
+      <h2 >Ravana Heights</h2>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="https://lh3.googleusercontent.com/-c8ggBD10iZ0/VNns5QLuDFI/AAAAAAAAAA4/-3iv_xAnzJ4rRsadZQcE8olfQ0ahMPF2wCJkC/w408-h306-k-no/">
+      </ion-thumbnail>
+      <h2 >Hotel Heaven's Edge</h2>
+    </ion-item>
 </ion-list>
 </div>
 </ion-content>
