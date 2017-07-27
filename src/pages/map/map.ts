@@ -79,7 +79,7 @@ private calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, p
 }
  private initMap() {
    var pointA = new google.maps.LatLng(6.927078600000002, 79.86124300000006)
-   var pointB = new google.maps.LatLng( 7.290571500000001, 80.63372619999996)
+   var pointB = new google.maps.LatLng(6.8666988, 81.046553)
         var map = new google.maps.Map(document.getElementById('map'), {
            zoom: 7,
           center: {lat: 7.290571500000001, lng: 80.63372619999996}  // Australia.
