@@ -5,6 +5,7 @@ import { AuthService } from '../../service/auth.service';
 import { BlogServiceService } from "../../service/blog-service.service";
 import { Login } from '../../pages/login/login';
 import { Auth } from '../../providers/auth';
+import {  AlertController, Platform } from 'ionic-angular';
 /**
  * Generated class for the Articles page.
  *
@@ -23,13 +24,11 @@ export class Articles {
   x:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private BlogService:BlogServiceService,
-    private authService: AuthService,public auth:Auth) {
+    private authService: AuthService,public auth:Auth,public alert: AlertController,public platform: Platform) {
 
        this.tabBarElement = document.querySelector('.tabbar')
           this.x = this.auth.authenticated();
-    if(this.x == false){
-      this.navCtrl.push(Login);
-    }
+
   }
     user: any;
   profile: any;
@@ -59,7 +58,9 @@ export class Articles {
     this.platform.exitApp();
   }
   ionViewDidLoad() {
-    
+        if(this.x == false){
+      this.navCtrl.push(Login);
+    }
     this.exit;
     setTimeout(()=>{
       this.splash= false;
