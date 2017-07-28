@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Post } from "../post/post";
 import { AuthService } from '../../service/auth.service';
 import { BlogServiceService } from "../../service/blog-service.service";
-
+import { Login } from '../../pages/login/login';
+import { Auth } from '../../providers/auth';
 /**
  * Generated class for the Articles page.
  *
@@ -17,9 +18,18 @@ import { BlogServiceService } from "../../service/blog-service.service";
   templateUrl: 'articles.html',
 })
 export class Articles {
+ splash = true;
+ tabBarElement:any;
+  x:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private BlogService:BlogServiceService,
-    private authService: AuthService) {
+    private authService: AuthService,public auth:Auth) {
+
+       this.tabBarElement = document.querySelector('.tabbar')
+          this.x = this.auth.authenticated();
+    if(this.x == false){
+      this.navCtrl.push(Login);
+    }
   }
     user: any;
   profile: any;
@@ -31,7 +41,30 @@ export class Articles {
   posts:any;
   postid:any;
 
+    exit(){
+      let alert = this.alert.create({
+        title: 'Confirm',
+        message: 'Do you want to exit?',
+        buttons: [{
+          text: "exit?",
+          handler: () => { this.exitApp() }
+        }, {
+          text: "Cancel",
+          role: 'cancel'
+        }]
+      })
+      alert.present();
+  }
+  exitApp(){
+    this.platform.exitApp();
+  }
   ionViewDidLoad() {
+    
+    this.exit;
+    setTimeout(()=>{
+      this.splash= false;
+    },2000);
+  
     console.log('ionViewDidLoad Articles');
      this.profile = JSON.parse(localStorage.getItem('profile'));
     const data = {
